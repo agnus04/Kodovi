@@ -32,26 +32,6 @@ struct mono {
 int n, t;
 int A[maxn];
 
-int solve(int x, int y) {
-	int maxi = -1e9, mini = 1e9;
-	for(int i = x;i <= y;i++) 
-		maxi = max(maxi, A[i]), mini = min(mini, A[i]);
-	return maxi - mini;	
-}
-
-int check(int len) {
-	mono Q1, Q2;
-	for(int i = 0;i < len;i++) Q1.add(A[i]), Q2.add(-A[i]);
-	int ans = Q1.max() + Q2.max();
-	
-	for(int i = 0;i < n - len;i++) {
-		Q1.remove(), Q2.remove();
-		Q1.add(A[i + len]), Q2.add(-A[i + len]);
-		ans = min(ans, Q1.max() + Q2.max());
-	}
-	return ans <= t;
-}
-
 int main() {
 	scanf("%d%d", &t, &n);
 	for(int i = 0;i < n;i++) 
